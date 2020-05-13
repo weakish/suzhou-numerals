@@ -1,0 +1,14 @@
+{
+  "name": "suzhou-numerals",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "node --experimental-modules test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "0BSD"
+}
