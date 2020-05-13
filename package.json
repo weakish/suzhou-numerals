@@ -1,7 +1,7 @@
 {
   "name": "suzhou-numerals",
   "version": "0.0.0",
-  "description": "",
+  "description": "Encoding and decoding Suzhou numerals.",
   "type": "module",
   "main": "index.js",
   "types": "index.d.ts",
