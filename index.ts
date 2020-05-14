@@ -12,37 +12,40 @@ const hangzhou: readonly string[] = [
 ];
 
 const hangzhou_alternative: readonly string[] = [
-    '一',
-    '二',
-    '三',
-]
+  "一",
+  "二",
+  "三",
+];
 
 const decode = (s: string): string =>
-    [...s].map((c) => {
-        if (hangzhou_alternative.indexOf(c) === -1) {
-            if (hangzhou.indexOf(c) === -1) {
-                throw new TypeError(`failed to decode ${c}`)
-            } else {
-                return hangzhou.indexOf(c).toString()
-            }
-        } else {
-            return (hangzhou_alternative.indexOf(c) + 1).toString()
-        }
-    }).join('')
+  [...s].map((c) => {
+    if (hangzhou_alternative.indexOf(c) === -1) {
+      if (hangzhou.indexOf(c) === -1) {
+        throw new TypeError(`failed to decode ${c}`);
+      } else {
+        return hangzhou.indexOf(c).toString();
+      }
+    } else {
+      return (hangzhou_alternative.indexOf(c) + 1).toString();
+    }
+  }).join("");
 
-const rewrite_with_alternatives = (without_alternatives: string[]): string[] => {
-    without_alternatives.forEach((c, i, arr) => {
-        const one_two_three: string[] = hangzhou.slice(1, 4)
-        if (one_two_three.includes(c)) {
-            if (one_two_three.includes(arr[i - 1])) {
-                arr[i] = hangzhou_alternative[hangzhou.indexOf(c) - 1]
-            }
-        }
-    })
-    return without_alternatives
-} 
+const rewrite_with_alternatives = (
+  without_alternatives: string[],
+): string[] => {
+  without_alternatives.forEach((c, i, arr) => {
+    const one_two_three: string[] = hangzhou.slice(1, 4);
+    if (one_two_three.includes(c)) {
+      if (one_two_three.includes(arr[i - 1])) {
+        arr[i] = hangzhou_alternative[hangzhou.indexOf(c) - 1];
+      }
+    }
+  });
+  return without_alternatives;
+};
 
 const encode = (n: string) =>
-    rewrite_with_alternatives([...n.toString()].map((d) => hangzhou[parseInt(d)])).join('')
+  rewrite_with_alternatives([...n.toString()].map((d) => hangzhou[parseInt(d)]))
+    .join("");
 
-export { encode, decode }
+export { encode, decode };
