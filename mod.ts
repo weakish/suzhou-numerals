@@ -17,8 +17,8 @@ const hangzhou_alternative: readonly string[] = [
   "三",
 ];
 
-const decode = (s: string): string =>
-  [...s].map((c) => {
+export function decode(s: string): string {
+  return [...s].map((c) => {
     if (hangzhou_alternative.indexOf(c) === -1) {
       if (hangzhou.indexOf(c) === -1) {
         throw new TypeError(`failed to decode ${c}`);
@@ -29,10 +29,11 @@ const decode = (s: string): string =>
       return (hangzhou_alternative.indexOf(c) + 1).toString();
     }
   }).join("");
+}
 
-const rewrite_with_alternatives = (
+function rewrite_with_alternatives(
   without_alternatives: string[],
-): string[] => {
+): string[] {
   without_alternatives.forEach((c, i, arr) => {
     const one_two_three: string[] = hangzhou.slice(1, 4);
     if (one_two_three.includes(c)) {
@@ -42,10 +43,11 @@ const rewrite_with_alternatives = (
     }
   });
   return without_alternatives;
-};
+}
 
-const encode = (n: string) =>
-  rewrite_with_alternatives([...n.toString()].map((d) => hangzhou[parseInt(d)]))
+export function encode(n: string): string {
+  return rewrite_with_alternatives(
+    [...n.toString()].map((d) => hangzhou[parseInt(d)]),
+  )
     .join("");
-
-export { encode, decode };
+}
