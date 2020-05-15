@@ -1,15 +1,22 @@
 # suzhou-numerals
 
-Encoding and decoding [Suzhou numerals] in JavaScript.
+Encoding and decoding [Suzhou numerals] in TypeScript.
 
 [Suzhou numerals]: https://en.wikipedia.org/wiki/Suzhou_numerals
 
 ## Usage
 
+### Deno
+
 ```js
+import * as suzhouNumerals from 'https://cdn.jsdelivr.net/gh/weakish/suzhou-numerals/mod.ts'
+
 console.log(suzhouNumerals.decode('〡二〣')) // '123'
 console.log(suzhouNumerals.encode('123')) // '〡二〣'
 ```
 
-This module works with Deno.
-To use it in browser, clone this repository and run `deno bundle mod.ts suzhou-numerals.js`, then import the generated javascript file in the web page. 
+### Browser
+
+```
+https://cdn.jsdelivr.net/gh/weakish/suzhou-numerals/mod.min.js
+```
