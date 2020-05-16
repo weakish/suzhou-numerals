@@ -9,7 +9,7 @@ Encoding and decoding [Suzhou numerals] in TypeScript.
 ### Deno
 
 ```js
-import * as suzhouNumerals from 'https://cdn.jsdelivr.net/gh/weakish/suzhou-numerals/mod.ts'
+import * as suzhouNumerals from 'https://deno.land/x/suzhou_numerals/mod.ts'
 
 console.log(suzhouNumerals.decode('〡二〣')) // '123'
 console.log(suzhouNumerals.encode('123')) // '〡二〣'
