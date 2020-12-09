@@ -21,3 +21,7 @@ import * as suzhouNumerals from 'https://cdn.jsdelivr.net/gh/weakish/suzhou-nume
 console.log(suzhouNumerals.decode('〡二〣')) // '123'
 </stript>
 ```
+
+## License
+
+0BSD
