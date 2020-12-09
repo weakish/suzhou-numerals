@@ -13,6 +13,8 @@ import * as suzhouNumerals from 'https://deno.land/x/suzhou_numerals/mod.ts'
 console.log(suzhouNumerals.encode('123')) // '〡二〣'
 ```
 
+Supports Deno 1.2+.
+
 ### Browser
 
 ```js
