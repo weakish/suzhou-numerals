@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { encode, decode } from "./mod.ts";
+import { decode, encode } from "./mod.ts";
 
 const examples: [string, string][] = [
   ["123", "〡二〣"],
