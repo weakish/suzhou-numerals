@@ -15,9 +15,17 @@ const examples: [string, string][] = [
   ["1", "〡"],
 ];
 
+const nonStandardExamples: [string, string][] = [
+  ["一二三", "123"],
+  ["〡〢〣", "123"],
+];
+
 Deno.test("encode & decode", () => {
   for (const e of examples) {
     assertEquals(encode(e[0]), e[1]);
     assertEquals(decode(e[1]), e[0]);
+  }
+  for (const nse of nonStandardExamples) {
+    assertEquals(decode(nse[0]), nse[1]);
   }
 });
