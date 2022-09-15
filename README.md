@@ -1,5 +1,7 @@
 # suzhou-numerals
 
+[![codecov](https://codecov.io/gh/weakish/suzhou-numerals/branch/master/graph/badge.svg?token=JV3SLOKBUB)](https://codecov.io/gh/weakish/suzhou-numerals)
+
 Encoding and decoding [Suzhou numerals] in TypeScript.
 
 [Suzhou numerals]: https://en.wikipedia.org/wiki/Suzhou_numerals
