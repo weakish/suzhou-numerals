@@ -3,17 +3,9 @@
     "strict": true
   },
   "lint": {
-    "files": {
-      "exclude": ["mod.js"]
-    },
     "rules": {
       "tags": ["recommended"],
       "exclude": ["camelcase"]
-    }
-  },
-  "fmt": {
-    "files": {
-      "exclude": ["mod.js"]
     }
   }
 }
