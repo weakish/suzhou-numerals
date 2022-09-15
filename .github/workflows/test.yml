@@ -9,14 +9,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        deno: ["v1.2.3", "v1.3.3", "v1.4.6", "v1.5.4", "v1.6.0"]
-    name: Test against Deno ${{ matrix.deno }}
+    name: Test against Deno latest canary
     steps:
     - uses: actions/checkout@v2
     - name: Setup Deno
-      uses: denolib/setup-deno@v2
+      uses: denoland/setup-deno@v1
       with:
-        deno-version: ${{ matrix.deno }}
-    - run: deno test
+        deno-version: canary
+    - run: |
+        deno lint
+        deno test
