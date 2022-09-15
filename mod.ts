@@ -1,4 +1,18 @@
-const hangzhou: readonly string[] = [
+// 蘇州号碼 (Suzhou Numerals) is also called 花碼 (ホワマー).
+type HowamaaZero = "〇"
+type HowamaaOne = "〡" | "一"
+type HowamaaTwo = "〢" | "二"
+type HowamaaThree = "〣" | "三"
+type HowamaaFour = "〤"
+type HowamaaFive = "〥"
+type HowamaaSix = "〦"
+type HowamaaSeven = "〧"
+type HowamaaEight = "〨"
+type HowamaaNine = "〩"
+export type Howamaa = HowamaaZero | HowamaaOne | HowamaaTwo | HowamaaThree | HowamaaFour | HowamaaFive | HowamaaSix | HowamaaSeven | HowamaaEight | HowamaaNine
+export type Digit = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+const hangzhou: readonly Howamaa[] = [
   "〇",
   "〡",
   "〢",
@@ -11,38 +25,45 @@ const hangzhou: readonly string[] = [
   "〩",
 ];
 
-const hangzhou_alternative: readonly string[] = [
+// deno-lint-ignore camelcase
+const hangzhou_alternative: readonly Howamaa[] = [
   "一",
   "二",
   "三",
 ];
 
-export function decode(s: string): string {
-  return [...s].map((c) => {
-    if (hangzhou_alternative.indexOf(c) === -1) {
-      if (hangzhou.indexOf(c) === -1) {
-        throw new TypeError(`failed to decode ${c}`);
-      } else {
-        return hangzhou.indexOf(c).toString();
-      }
+function decodeSequence(seq: Howamaa[]): Digit[] {
+  return seq.map((c) => {
+    if (hangzhou_alternative.includes(c)) {
+      return hangzhou_alternative.indexOf(c) + 1 as Digit;
     } else {
-      return (hangzhou_alternative.indexOf(c) + 1).toString();
+      return hangzhou.indexOf(c) as Digit;
     }
-  }).join("");
+  });
 }
 
-function rewrite_with_alternatives(
-  without_alternatives: string[],
-): string[] {
-  without_alternatives.forEach((c, i, arr) => {
-    const one_two_three: string[] = hangzhou.slice(1, 4);
+export function decode(s: string): string {
+  const h: Howamaa[] = [...s] as Howamaa[]
+  const digits: Digit[] = decodeSequence(h)
+  return digits.join("")
+}
+
+export function toNumber(s: string, radix=10): number {
+  return parseInt(decode(s), radix)
+}
+
+// deno-lint-ignore camelcase
+function rewrite_with_alternatives(h: Howamaa[]): Howamaa[] {
+  h.forEach((c, i, arr) => {
+    // deno-lint-ignore camelcase
+    const one_two_three: Howamaa[] = hangzhou.slice(1, 4);
     if (one_two_three.includes(c)) {
       if (one_two_three.includes(arr[i - 1])) {
         arr[i] = hangzhou_alternative[hangzhou.indexOf(c) - 1];
       }
     }
   });
-  return without_alternatives;
+  return h;
 }
 
 export function encode(n: string): string {
@@ -50,4 +71,8 @@ export function encode(n: string): string {
     [...n.toString()].map((d) => hangzhou[parseInt(d)]),
   )
     .join("");
+}
+
+export function fromNumber(n: number, radix=10): string {
+  return encode(n.toString(radix));
 }
