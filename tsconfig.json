@@ -8,8 +8,7 @@
     "target": "ESNext",
     "module": "ESNext",
     "declaration": true,
-    "incremental": true,
+    "incremental": true
   },
   "exclude": ["test.ts"]
 }
-  
