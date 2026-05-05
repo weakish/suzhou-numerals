@@ -14,6 +14,12 @@ Deno
 import * as suzhouNumerals from "https://deno.land/x/suzhou_numerals@0.1.0/mod.ts";
 ```
 
+Bun
+
+```js
+import * as suzhouNumerals from 'https://cdn.jsdelivr.net/gh/weakish/suzhou-numerals@0.1.0/mod.js';
+```
+
 Browser
 
 ```html
